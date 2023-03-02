@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import ReactDOM from 'react-dom/client';
 import './App.css';
 
 function App() {
+  const [stationName, setstationName] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name you entered was: ${stationName}`);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+        <input 
+          type="text" 
+          value={stationName}
+          onChange={(e) => setstationName(e.target.value)}
+        />
+      </label>
+      <input type="submit" />
+    </form>
+  )
 }
 
 export default App;
